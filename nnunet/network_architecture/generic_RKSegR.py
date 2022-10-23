@@ -401,7 +401,6 @@ class Generic_RKSegR(SegmentationNetwork):
 
         x = self.conv_blocks_context[-1](x)
 
-        e = [None] * self.num_pool
         for u in range(len(self.tu)):
             x = self.tu[u](x)
             skips[u+1][u+1] = x
