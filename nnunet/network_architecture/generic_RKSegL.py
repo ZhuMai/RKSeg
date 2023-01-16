@@ -404,7 +404,7 @@ class Generic_RKSegL(SegmentationNetwork):
 
             for i in range(d+1, self.num_pool+1):
                 if None == skips[d][i] and not self.convolutional_pooling:
-                    skips[d][i] = self.td[d](skips[d][i-1])
+                    skips[d][i] = self.td[i-1](skips[d][i-1])
 
             x = skips[d][d+1]
             if d > 0:
