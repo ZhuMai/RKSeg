@@ -326,10 +326,7 @@ class Generic_RKSegL(SegmentationNetwork):
             nfeatures_from_down = final_num_features
             nfeatures_from_skip = self.conv_blocks_context[
                 -(2 + u)].output_channels  # self.conv_blocks_context[-1] is bottleneck, so start with -2
-            if u+1 == num_pool:
-                n_features_after_tu_and_concat = nfeatures_from_skip
-            else:
-                n_features_after_tu_and_concat = nfeatures_from_skip #* (u+2)
+            n_features_after_tu_and_concat = nfeatures_from_skip
 
             # the first conv reduces the number of features to match those of skip
             # the following convs work on that number of features
@@ -348,9 +345,9 @@ class Generic_RKSegL(SegmentationNetwork):
                 self.tu.append(transpconv(nfeatures_from_down, nfeatures_from_skip, scale_factor,
                                           scale_factor, bias=False))
 
-            self.conv_kwargs['kernel_size'] = self.conv_kernel_sizes[- (u + 1)]
-            self.conv_kwargs['padding'] = self.conv_pad_sizes[- (u + 1)]
-            if 0 == u:
+            if u+1 == num_pool:
+                self.conv_kwargs['kernel_size'] = self.conv_kernel_sizes[- (u + 1)]
+                self.conv_kwargs['padding'] = self.conv_pad_sizes[- (u + 1)]
                 self.conv_blocks_localization.append(nn.Sequential(
                     StackedConvLayers(n_features_after_tu_and_concat, nfeatures_from_skip, num_conv_per_stage - 1,
                                   self.conv_op, self.conv_kwargs, self.norm_op, self.norm_op_kwargs, self.dropout_op,
