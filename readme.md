@@ -34,4 +34,4 @@ Example of training RKSeg-R for 150 epochs on Task004_Hippocampus:
 nnUNet_train 2d RKSegRTrainerV2_noDeepSupervision_150epochs 4 0
 ```
 
-This article and repository are used for semantic segmentation. If you are interested in image classification, you can refer to [RKCNN](https://github.com/ZhuMai/RKCNN). In addition, there is follow-up work on semantic segmentation, [RKSeg+](https://github.com/ZhuMai/RKSegPlus).
+This article and repository are used for semantic segmentation. If you are interested in image classification, you can refer to [RKCNN](https://github.com/ZhuMai/RKCNN). In addition, there is a follow-up work on semantic segmentation, [RKSeg+](https://github.com/ZhuMai/RKSegPlus).
